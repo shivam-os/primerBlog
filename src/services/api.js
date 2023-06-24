@@ -1,8 +1,20 @@
 const url = "https://jsonplaceholder.typicode.com";
 
 export const fetchPosts = async (page) => {
-  const response = await fetch(`${url}/posts?_page=${page}`);
-  return response.json();
+  const postData = await fetch(`${url}/posts?_page=${page}`)
+  const response = await postData.json()
+  const authorData = await fetch(`${url}/users`)
+  const authors = await authorData.json()
+  for (let i = 0; i < response.length; i++) {
+    for (let j = 0; j < authors.length; j++) {
+      if (response[i].userId === authors[j].id) {
+        response[i].author = authors[j];
+        break;
+      }
+    }
+  }
+  console.log(response);
+  return response
 };
 
 export const fetchSinglePost = async (id) => {

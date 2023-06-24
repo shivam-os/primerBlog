@@ -11,7 +11,7 @@ import Favourites from "./pages/Favourites";
 import SinglePost from "./pages/SinglePost";
 
 function App() {
- 
+
   return (
     <Container>
       <Header />

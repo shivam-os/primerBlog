@@ -24,3 +24,26 @@ code {
   background-color: #3c3c3b;
   color: white;
 }
+
+.postcard {
+  border: 2px solid black;
+  border-radius: 0;
+}
+
+.postcard-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.4rem;
+  text-decoration: none;
+  line-height: 1rem;
+  font-weight: 600;
+}
+
+.postcard-title:hover {
+  text-decoration: underline;
+}
+
+.postcard-hr {
+  border-top: 10px solid #00ff00;
+  margin-top: -1.5rem;
+  width: 40%
+}

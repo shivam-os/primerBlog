@@ -3,12 +3,16 @@ import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 
 export default function PostCard(props) {
-  const { title, body, id } = props;
+  const { title, body, author, id } = props;
 
   return (
-    <Card>
+    <Card className="mt-5 postcard">
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
+        <Card.Title className="postcard-title" as={NavLink} to={`/posts/${id}`}>
+          {title}
+        </Card.Title>
+        <Card.Text className="mt-3 postcard-author">@{author}</Card.Text>
+        <hr className="postcard-hr"/>
         <Card.Text>{body}</Card.Text>
         <Button variant="primary" as={NavLink} to={`/posts/${id}`}>
           Read More {id}

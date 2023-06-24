@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
 export default function Header() {
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container className="header">
@@ -25,6 +26,7 @@ export default function Header() {
             <Nav.Link as={NavLink} to="/contact">
               Contact
             </Nav.Link>
+      
           </Nav>
         </Navbar.Collapse>
       </Container>

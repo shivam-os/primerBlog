@@ -4,8 +4,8 @@ import PostsList from "../components/PostsList";
 import Button from "react-bootstrap/Button";
 
 export default function Home() {
-  const [currentPage, setCurrentPage] = useState(1);
   const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -18,7 +18,7 @@ export default function Home() {
     };
 
     getPosts();
-  }, [currentPage]);
+  }, [currentPage, setPosts]);
 
   return (
     <div>
@@ -33,9 +33,7 @@ export default function Home() {
       {currentPage === 10 ? (
         ""
       ) : (
-        <Button onClick={() => setCurrentPage(currentPage + 1)}>
-          Next
-        </Button>
+        <Button onClick={() => setCurrentPage(currentPage + 1)}>Next</Button>
       )}
     </div>
   );
