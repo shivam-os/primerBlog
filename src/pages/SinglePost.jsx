@@ -53,7 +53,7 @@ export default function SinglePost() {
     <Container>
       <Stack direction="horizontal">
         <Button>Home</Button>
-        <Button className="ms-auto">
+        <Button className="ms-auto" variant="transparent">
           <FaHeart />
         </Button>
       </Stack>
