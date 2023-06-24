@@ -11,26 +11,12 @@ import Favourites from "./pages/Favourites";
 import SinglePost from "./pages/SinglePost";
 
 function App() {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const response = await fetchPosts();
-        setPosts(response);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    getPosts();
-  }, []);
-
+ 
   return (
     <Container>
       <Header />
       <Routes>
-        <Route path="/" element={<Home posts={posts}/>} />
+        <Route path="/" element={<Home />} />
         <Route path="/posts/:id" element={<SinglePost />} />
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/about" element={<About />} />

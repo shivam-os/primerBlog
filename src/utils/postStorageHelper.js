@@ -31,3 +31,4 @@ export const isPostFavourite = (id) => {
   const favourites = getFavourites()
   return favourites.some((item) => item.id === Number(id))
 }
+

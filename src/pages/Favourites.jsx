@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getFavourites } from "../utils/storageHelper";
+import { getFavourites } from "../utils/postStorageHelper";
 import PostsList from "../components/PostsList";
 
 export default function Favourites() {
