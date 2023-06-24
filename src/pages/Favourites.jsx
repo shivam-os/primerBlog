@@ -1,5 +1,21 @@
+import { useEffect, useState } from "react";
+import { getFavourites } from "../utils/storageHelper";
+import PostsList from "../components/PostsList";
+
 export default function Favourites() {
+  const [favourites, setFavourites] = useState([]);
+
+  useEffect(() => {
+    const getFavouritePosts = () => {
+      const posts = getFavourites();
+      setFavourites(posts);
+    };
+    getFavouritePosts();
+  }, []);
+
   return (
-    <h1>Favourites</h1>
-  )
+    <div>
+      <PostsList posts={favourites} />
+    </div>
+  );
 }

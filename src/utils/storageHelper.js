@@ -25,3 +25,9 @@ export const deletePostInFavourites = (id) => {
   const updatedFavourites = favourites.filter((item) => item.id !== id);
   setFavourites(updatedFavourites)
 };
+
+//Check if post is a favourite
+export const isPostFavourite = (id) => {
+  const favourites = getFavourites()
+  return favourites.some((item) => item.id === Number(id))
+}
