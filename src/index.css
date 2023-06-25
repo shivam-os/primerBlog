@@ -4,14 +4,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 /* Header (navbar) */
 
 #brand {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 700;
 }
 
@@ -20,7 +20,7 @@ body {
   color: rgb(0, 59, 0);
   font-weight: 700;
   font-family: "IBM Plex Mono", monospace;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 
 /* Footer */
@@ -39,7 +39,7 @@ body {
 
 .postcard-title {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   text-decoration: none;
   line-height: 1rem;
   font-weight: 600;
