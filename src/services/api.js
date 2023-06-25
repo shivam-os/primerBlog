@@ -31,3 +31,12 @@ export const fetchComments = async (id) => {
   const response = await fetch(`${url}/comments?postId=${id}`);
   return response.json();
 };
+
+export const getSinglePost = async (id) => {
+  const post = await fetchSinglePost(id);
+  const [author] = await fetchAuthor(post.userId);
+  post.author = author;
+  return post;
+}
+
+

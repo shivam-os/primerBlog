@@ -12,12 +12,14 @@ import SinglePost from "./pages/SinglePost";
 
 function App() {
 
+  const [posts, setPosts] = useState([]);
+
   return (
     <Container>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/posts/:id" element={<SinglePost />} />
+        <Route path="/" element={<Home posts={posts} setPosts={setPosts}/>} />
+        <Route path="/posts/:id" element={<SinglePost posts={posts}/>} />
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

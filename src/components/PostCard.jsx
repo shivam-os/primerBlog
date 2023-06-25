@@ -11,11 +11,11 @@ export default function PostCard(props) {
         <Card.Title className="postcard-title" as={NavLink} to={`/posts/${id}`}>
           {title}
         </Card.Title>
-        <Card.Text className="mt-3 postcard-author">@{author}</Card.Text>
+        <Card.Text className="mt-3 postcard-author">@{author?.name}</Card.Text>
         <hr className="postcard-hr"/>
         <Card.Text>{body}</Card.Text>
-        <Button variant="primary" as={NavLink} to={`/posts/${id}`}>
-          Read More {id}
+        <Button className="postcard-button" as={NavLink} to={`/posts/${id}`}>
+          Read More
         </Button>
       </Card.Body>
     </Card>

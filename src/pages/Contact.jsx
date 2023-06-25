@@ -1,11 +1,15 @@
+import Container from "react-bootstrap/Container"
+
 export default function Contact () {
   return (
-    <>
-    <h2>Contact us</h2>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam quos, blanditiis aperiam nisi eum atque architecto, fuga suscipit est eligendi provident voluptatum sequi magni non dolor. Placeat iusto commodi corrupti.
-    Molestias voluptas temporibus illo sunt nostrum magni delectus, iure corrupti culpa adipisci libero, consequatur sapiente consequuntur consectetur ea cum aliquam repellat dolorum neque! Velit fugit minima, enim praesentium placeat in.
-    Quod quisquam commodi magni sint perspiciatis esse illum omnis ab, velit aut nobis, veritatis nihil deleniti voluptates assumenda voluptatibus maxime. Laudantium id vitae laborum, voluptas harum ea quia dolor dignissimos.
-    Quidem eos cupiditate, dolorem cum maiores laudantium cumque enim odit ratione nesciunt. Nobis porro obcaecati eveniet veniam ipsam totam, enim officiis beatae, accusamus maiores eos aut illum natus itaque consectetur.</p>
-    </>
+    <Container>
+    <h2 className="mt-5 mb-3">Contact Us</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis illum quia aperiam iste accusamus, tenetur quasi, sint, quae ducimus deleniti eos molestias eius odio fugiat illo consectetur est obcaecati culpa!
+    Ducimus placeat, excepturi quam minima labore libero. Non error eligendi consectetur numquam iusto enim ex ipsum eius perferendis laborum voluptatibus facilis, pariatur ea dicta dolor nemo in cumque dolorem architecto!
+    <br />
+    <br />
+    Placeat fuga doloremque labore consequatur minus aspernatur sapiente officia cupiditate tempore dolorem necessitatibus architecto tenetur quisquam natus, aliquid inventore autem! At nemo placeat repellat reiciendis atque quasi facere dolorum corporis.
+    Laudantium dicta qui amet ut omnis dolore commodi delectus sint ullam, porro, laboriosam minima molestias reprehenderit vitae repellendus magnam praesentium odio illo eos error dignissimos nisi? Dicta incidunt laborum temporibus.</p>
+    </Container>
   )
 }

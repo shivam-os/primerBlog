@@ -1,17 +1,45 @@
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Stack from "react-bootstrap/Stack";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { fetchAuthor, fetchComments, fetchSinglePost } from "../services/api";
-import { FaUserCircle } from "react-icons/fa";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { fetchAuthor, fetchComments, fetchSinglePost, getSinglePost } from "../services/api";
+import {
+  FaHeart,
+  FaRegHeart,
+  FaSmile,
+  FaUserCircle,
+  FaArrowLeft,
+} from "react-icons/fa";
 import {
   addPostInFavourites,
   deletePostInFavourites,
   isPostFavourite,
 } from "../utils/postStorageHelper";
+
+function MyForm() {
+  <Form>
+    <Form.Group className="mb-3" controlId="formBasicName">
+      <Form.Label>Name</Form.Label>
+      <Form.Control type="text" placeholder="Enter name" />
+    </Form.Group>
+
+    <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Label>Email address</Form.Label>
+      <Form.Control type="email" placeholder="Enter email" />
+    </Form.Group>
+
+    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+      <Form.Label>Comment</Form.Label>
+      <Form.Control as="textarea" rows={3} />
+    </Form.Group>
+
+    <Button variant="primary" type="submit">
+      Submit
+    </Button>
+  </Form>;
+}
 
 function FilledHeart(props) {
   const { post, setIsFavourite } = props;
@@ -23,7 +51,7 @@ function FilledHeart(props) {
 
   return (
     <Button className="ms-auto" variant="transparent" onClick={handleClick}>
-      <FaHeart color="red" />
+      <FaHeart color="red" className="favourite-icon" />
     </Button>
   );
 }
@@ -38,7 +66,7 @@ function EmptyHeart(props) {
 
   return (
     <Button className="ms-auto" variant="transparent" onClick={handleClick}>
-      <FaRegHeart />
+      <FaRegHeart className="favourite-icon" />
     </Button>
   );
 }
@@ -47,15 +75,29 @@ function Comment(props) {
   const { name, email, body } = props;
 
   return (
-    <div>
-      <Stack direction="horizontal">
+    <div className="comment">
+      <div className="comment-header">
         <FaUserCircle size="2.5rem" />
-        <Stack gap={0}>
-          <p>{name}</p>
-          <p>{email}</p>
-        </Stack>
-      </Stack>
+        <p>{email}</p>
+      </div>
       <p>{body}</p>
+    </div>
+  );
+}
+
+function AuthorBox(props) {
+  const { author } = props;
+
+  return (
+    <div className="author-box my-5">
+      <FaSmile size="5rem" className="author-profile" />
+      <div>
+        <p>
+          by {author?.name}, @{author?.username}
+        </p>
+        <hr className="author-hr" />
+        <p>{author?.company?.catchPhrase.repeat(3)}</p>
+      </div>
     </div>
   );
 }
@@ -63,70 +105,48 @@ function Comment(props) {
 export default function SinglePost() {
   const { id } = useParams();
   const [post, setPost] = useState({});
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [author, setAuthor] = useState("");
   const [comments, setComments] = useState([]);
   const [isFavourite, setIsFavourite] = useState(false);
 
   useEffect(() => {
     const getPostDetails = async (id) => {
       try {
-        const post = await fetchSinglePost(id);
-        const postAuthor = await fetchAuthor(post.userId);
+        const fetchedPost = await getSinglePost(id)
+        setPost(fetchedPost);
         const postComments = await fetchComments(id);
-        setPost(post);
-        console.log(isPostFavourite(id));
         setIsFavourite(isPostFavourite(id));
-        setTitle(post.title);
-        setBody(post.body);
-        setAuthor(postAuthor);
         setComments(postComments);
+        console.log("render")
       } catch (err) {
         console.log(err);
       }
     };
 
     getPostDetails(id);
-  }, []);
-
-  const handleCommentSubmit = (e) => {
-    
-  }
+  }, [id]);
 
   return (
     <Container>
       <Stack direction="horizontal">
-        <Button>Home</Button>
+        <Button as={NavLink} to="/" className="previous-btn">
+          <FaArrowLeft className="icon-left" />
+          Home
+        </Button>
         {isFavourite ? (
           <FilledHeart post={post} setIsFavourite={setIsFavourite} />
         ) : (
           <EmptyHeart post={post} setIsFavourite={setIsFavourite} />
         )}
       </Stack>
-      <h2>{title}</h2>
-      <p>{body}</p>
-      <div>
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicName">
-            <Form.Label>Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter name" />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Comment</Form.Label>
-            <Form.Control as="textarea" rows={3} />
-          </Form.Group>
-
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
+      <h2 className="mt-5 mb-3">{post?.title}</h2>
+      <p>{post?.body?.repeat(3)}</p>
+      <p>{post?.body?.repeat(3)}</p>
+      <p>{post?.body?.repeat(3)}</p>
+      <AuthorBox author={post.author} />
+      <h3 id="comment-heading" className="text-center mt-5">
+        Comments
+      </h3>
+      <div className="comments-section">
         {comments.map((item) => {
           return (
             <Comment

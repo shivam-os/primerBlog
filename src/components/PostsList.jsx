@@ -11,7 +11,7 @@ export default function PostsList(props) {
             id={item.id}
             title={item.title}
             body={item.body}
-            author={item.author.name}
+            author={item?.author}
             key={item.id}
           />
         );

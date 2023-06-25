@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'IBM Plex Sans', monospace;
+  font-family: "IBM Plex Sans", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -8,7 +8,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -16,7 +16,7 @@ code {
   background-color: #00ff00;
   color: rgb(0, 59, 0);
   font-weight: 700;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 1.4rem;
 }
 
@@ -31,7 +31,7 @@ code {
 }
 
 .postcard-title {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 1.4rem;
   text-decoration: none;
   line-height: 1rem;
@@ -45,5 +45,84 @@ code {
 .postcard-hr {
   border-top: 10px solid #00ff00;
   margin-top: -1.5rem;
-  width: 40%
+  width: 40%;
+}
+
+.postcard-button {
+  background-color: #f6f7f9;
+  color: black;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  border: 2px solid #c1c9d5;
+}
+
+.postcard-button:hover {
+  border: 2px solid #3c3c3b;
+  background-color: #f6f7f9;
+  color: black;
+}
+
+.previous-btn,
+#next-btn {
+  border: 2px solid black;
+  background-color: #00ff00;
+  color: black;
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.previos-btn:hover,
+#next-btn:hover {
+  background-color: #00aa00;
+  color: white;
+}
+
+.icon-left {
+  margin-right: 0.75rem;
+}
+
+h2,
+#comment-heading {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 700;
+}
+
+.comments-section {
+  background-color: #f6f7f9;
+  padding: 1rem;
+}
+
+.comment {
+  border-bottom: 2px solid #c4ccd7;
+  margin-bottom: 2rem;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.author-box {
+  display: flex;
+  gap: 2rem;
+  border-top: 2px solid #3ccf33;
+  border-bottom: 2px solid #3ccf33;
+  padding: 2rem 0 2rem 0;
+}
+
+.author-profile {
+  border: 3px solid #c2cad6;
+  padding: 0.75rem;
+}
+
+.author-hr {
+  border-top: 10px solid #00ff00;
+  margin-top: -1.5rem;
+  width: 80%;
+}
+
+.favourite-icon {
+  font-size: 2rem;
 }

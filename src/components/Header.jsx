@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 export default function Header() {
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary mb-5">
       <Container className="header">
         <Navbar.Brand as={NavLink} to="/">
           PrimerBlog
