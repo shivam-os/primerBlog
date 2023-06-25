@@ -12,7 +12,7 @@ export default function PostCard(props) {
           {title}
         </Card.Title>
         <Card.Text className="mt-3 postcard-author">@{author?.name}</Card.Text>
-        <hr className="postcard-hr"/>
+        <hr className="postcard-hr" />
         <Card.Text>{body}</Card.Text>
         <Button className="postcard-button" as={NavLink} to={`/posts/${id}`}>
           Read More

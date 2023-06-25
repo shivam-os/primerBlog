@@ -7,9 +7,12 @@ body {
   font-size: 1.2rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+/* Header (navbar) */
+
+#brand {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
 .header {
@@ -20,10 +23,14 @@ code {
   font-size: 1.4rem;
 }
 
+/* Footer */
+
 .footer {
   background-color: #3c3c3b;
   color: white;
 }
+
+/* Single post card of the posts list */
 
 .postcard {
   border: 2px solid black;
@@ -62,6 +69,8 @@ code {
   color: black;
 }
 
+/* Pagination Buttons */
+
 .previous-btn,
 #next-btn {
   border: 2px solid black;
@@ -83,7 +92,10 @@ code {
   margin-right: 0.75rem;
 }
 
-h2, h3,
+/* Comments */
+
+h2,
+h3,
 #comment-heading {
   font-family: "IBM Plex Mono", monospace;
   font-weight: 700;
@@ -105,6 +117,8 @@ h2, h3,
   gap: 1rem;
 }
 
+/* Author Box */
+
 .author-box {
   display: flex;
   gap: 2rem;
@@ -124,9 +138,13 @@ h2, h3,
   width: 80%;
 }
 
+/* Favourites Button */
+
 .favourite-icon {
   font-size: 2rem;
 }
+
+/* Spinner */
 
 #spinner {
   display: flex;
@@ -134,4 +152,18 @@ h2, h3,
   align-items: center;
   height: inherit;
   background-color: white;
+}
+
+/* For tablets & above */
+@media (min-width: 768px) {
+  .app {
+    width: 60%;
+  }
+}
+
+/* For Desktops & above */
+@media (min-width: 992px) {
+  .app {
+    width: 50%;
+  }
 }

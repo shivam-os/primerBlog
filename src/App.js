@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { fetchPosts } from "./services/api";
+import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -11,19 +10,16 @@ import Favourites from "./pages/Favourites";
 import SinglePost from "./pages/SinglePost";
 
 function App() {
-  const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <Container>
+    <Container className="app">
       <Header />
       <Routes>
         <Route
           path="/"
           element={
             <Home
-              posts={posts}
-              setPosts={setPosts}
               setIsLoading={setIsLoading}
               isLoading={isLoading}
             />

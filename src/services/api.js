@@ -1,5 +1,6 @@
 const url = "https://jsonplaceholder.typicode.com";
 
+//GET 10 posts and add author field to each of them
 export const fetchPosts = async (page) => {
   const postData = await fetch(`${url}/posts?_page=${page}`)
   const response = await postData.json()
@@ -13,25 +14,28 @@ export const fetchPosts = async (page) => {
       }
     }
   }
-  console.log(response);
   return response
 };
 
-export const fetchSinglePost = async (id) => {
+//GET a single post according to post id
+const fetchSinglePost = async (id) => {
   const response = await fetch(`${url}/posts/${id}`);
   return response.json();
 };
 
-export const fetchAuthor = async (id) => {
+//GET a single author according to post id
+const fetchAuthor = async (id) => {
   const response = await fetch(`${url}/users?id=${id}`);
   return response.json();
 };
 
+//GET comments of a post according to post id
 export const fetchComments = async (id) => {
   const response = await fetch(`${url}/comments?postId=${id}`);
   return response.json();
 };
 
+//GET a single post according to post id and add author field to it
 export const getSinglePost = async (id) => {
   const post = await fetchSinglePost(id);
   const [author] = await fetchAuthor(post.userId);

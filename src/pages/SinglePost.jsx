@@ -19,6 +19,7 @@ import {
 import CustomSpinner from "../components/CustomSpinner";
 import { toast } from "react-toastify";
 
+//Button component to remove post from favourite
 function FilledHeart(props) {
   const { post, setIsFavourite } = props;
 
@@ -44,6 +45,7 @@ function FilledHeart(props) {
   );
 }
 
+//Button component to add post to favourite
 function EmptyHeart(props) {
   const { post, setIsFavourite } = props;
 
@@ -69,6 +71,7 @@ function EmptyHeart(props) {
   );
 }
 
+//Single comment component
 function Comment(props) {
   const { email, body } = props;
 
@@ -83,12 +86,13 @@ function Comment(props) {
   );
 }
 
+//Comments box component to display all the comments
 function CommentBox(props) {
   const { comments } = props;
 
   return (
     <>
-      <h3 id="comment-heading" className="text-center mt-5">
+      <h3 id="comment-heading" className="text-center mt-5 mb-3">
         Comments
       </h3>
       <div className="comments-section">
@@ -107,12 +111,13 @@ function CommentBox(props) {
   );
 }
 
+//Author box component to display author details
 function AuthorBox(props) {
   const { author } = props;
 
   return (
     <div className="author-box my-5">
-      <FaSmile size="5rem" className="author-profile" />
+      <FaSmile size="5rem" />
       <div>
         <h3>About Author</h3>
         <p>
@@ -132,6 +137,7 @@ export default function SinglePost(props) {
   const [isFavourite, setIsFavourite] = useState(false);
   const { isLoading, setIsLoading } = props;
 
+  //Fetch the post & comments associated with given post id
   useEffect(() => {
     const getPostDetails = async (id) => {
       try {
@@ -141,7 +147,6 @@ export default function SinglePost(props) {
         const postComments = await fetchComments(id);
         setIsFavourite(isPostFavourite(id));
         setComments(postComments);
-        console.log("render");
       } catch (err) {
         console.log(err);
         toast.error("Something went wrong!", {
