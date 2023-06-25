@@ -4,19 +4,28 @@ import Container from "react-bootstrap/Container";
 import Stack from "react-bootstrap/Stack";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { fetchAuthor, fetchComments, fetchSinglePost, getSinglePost } from "../services/api";
+import {
+  fetchAuthor,
+  fetchComments,
+  fetchSinglePost,
+  getSinglePost,
+} from "../services/api";
 import {
   FaHeart,
   FaRegHeart,
   FaSmile,
   FaUserCircle,
   FaArrowLeft,
+  FaCheckCircle,
 } from "react-icons/fa";
+import { IoMdCloseCircle } from "react-icons/io";
 import {
   addPostInFavourites,
   deletePostInFavourites,
   isPostFavourite,
 } from "../utils/postStorageHelper";
+import CustomSpinner from "../components/CustomSpinner";
+import { toast } from "react-toastify";
 
 function MyForm() {
   <Form>
@@ -47,6 +56,16 @@ function FilledHeart(props) {
   const handleClick = () => {
     deletePostInFavourites(post.id);
     setIsFavourite(false);
+    toast.error("Removed from favourites!", {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
 
   return (
@@ -62,6 +81,16 @@ function EmptyHeart(props) {
   const handleClick = () => {
     addPostInFavourites(post);
     setIsFavourite(true);
+    toast.success("Added to favourites!", {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
 
   return (
@@ -85,6 +114,30 @@ function Comment(props) {
   );
 }
 
+function CommentBox(props) {
+  const { comments } = props;
+
+  return (
+    <>
+      <h3 id="comment-heading" className="text-center mt-5">
+        Comments
+      </h3>
+      <div className="comments-section">
+        {comments.map((item) => {
+          return (
+            <Comment
+              name={item.name}
+              email={item.email}
+              body={item.body}
+              key={item.id}
+            />
+          );
+        })}
+      </div>
+    </>
+  );
+}
+
 function AuthorBox(props) {
   const { author } = props;
 
@@ -102,28 +155,42 @@ function AuthorBox(props) {
   );
 }
 
-export default function SinglePost() {
+export default function SinglePost(props) {
   const { id } = useParams();
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
   const [isFavourite, setIsFavourite] = useState(false);
+  const { isLoading, setIsLoading } = props;
 
   useEffect(() => {
     const getPostDetails = async (id) => {
       try {
-        const fetchedPost = await getSinglePost(id)
+        setIsLoading(true);
+        const fetchedPost = await getSinglePost(id);
         setPost(fetchedPost);
         const postComments = await fetchComments(id);
         setIsFavourite(isPostFavourite(id));
         setComments(postComments);
-        console.log("render")
+        console.log("render");
       } catch (err) {
         console.log(err);
+        toast.error("Something went wrong!", {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } finally {
+        setIsLoading(false);
       }
     };
 
     getPostDetails(id);
-  }, [id]);
+  }, [id, setIsLoading]);
 
   return (
     <Container>
@@ -138,26 +205,18 @@ export default function SinglePost() {
           <EmptyHeart post={post} setIsFavourite={setIsFavourite} />
         )}
       </Stack>
-      <h2 className="mt-5 mb-3">{post?.title}</h2>
-      <p>{post?.body?.repeat(3)}</p>
-      <p>{post?.body?.repeat(3)}</p>
-      <p>{post?.body?.repeat(3)}</p>
-      <AuthorBox author={post.author} />
-      <h3 id="comment-heading" className="text-center mt-5">
-        Comments
-      </h3>
-      <div className="comments-section">
-        {comments.map((item) => {
-          return (
-            <Comment
-              name={item.name}
-              email={item.email}
-              body={item.body}
-              key={item.id}
-            />
-          );
-        })}
-      </div>
+      {isLoading ? (
+        <CustomSpinner />
+      ) : (
+        <>
+          <h2 className="mt-5 mb-3">{post?.title}</h2>
+          <p>{post?.body?.repeat(3)}</p>
+          <p>{post?.body?.repeat(3)}</p>
+          <p>{post?.body?.repeat(3)}</p>
+          <AuthorBox author={post.author} />
+          <CommentBox comments={comments} />
+        </>
+      )}
     </Container>
   );
 }

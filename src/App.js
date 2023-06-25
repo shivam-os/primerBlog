@@ -11,15 +11,30 @@ import Favourites from "./pages/Favourites";
 import SinglePost from "./pages/SinglePost";
 
 function App() {
-
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <Container>
       <Header />
       <Routes>
-        <Route path="/" element={<Home posts={posts} setPosts={setPosts}/>} />
-        <Route path="/posts/:id" element={<SinglePost posts={posts}/>} />
+        <Route
+          path="/"
+          element={
+            <Home
+              posts={posts}
+              setPosts={setPosts}
+              setIsLoading={setIsLoading}
+              isLoading={isLoading}
+            />
+          }
+        />
+        <Route
+          path="/posts/:id"
+          element={
+            <SinglePost setIsLoading={setIsLoading} isLoading={isLoading} />
+          }
+        />
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

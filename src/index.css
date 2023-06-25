@@ -72,10 +72,11 @@ code {
   font-size: 1.125rem;
 }
 
-.previos-btn:hover,
+.previous-btn:hover,
 #next-btn:hover {
   background-color: #00aa00;
   color: white;
+  border: 2px solid black;
 }
 
 .icon-left {
@@ -125,4 +126,12 @@ h2,
 
 .favourite-icon {
   font-size: 2rem;
+}
+
+#spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  background-color: white;
 }
