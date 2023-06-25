@@ -6,10 +6,12 @@ import Stack from "react-bootstrap/Stack";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import CustomSpinner from "../components/CustomSpinner";
 import { toast } from "react-toastify";
+import { Container } from "react-bootstrap";
 
 export default function Home(props) {
   const { posts, setPosts, setIsLoading, isLoading } = props;
   const [currentPage, setCurrentPage] = useState(1);
+  
 
   useEffect(() => {
     const getPosts = async () => {
@@ -38,7 +40,7 @@ export default function Home(props) {
   }, [currentPage, setPosts, setIsLoading]);
 
   return (
-    <div>
+    <Container fluid="md">
       {isLoading ? <CustomSpinner /> : <PostsList posts={posts} />}
 
       <Stack direction="horizontal" className="my-5">
@@ -65,6 +67,6 @@ export default function Home(props) {
           </Button>
         )}
       </Stack>
-    </div>
+    </Container>
   );
 }

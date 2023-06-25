@@ -83,7 +83,7 @@ code {
   margin-right: 0.75rem;
 }
 
-h2,
+h2, h3,
 #comment-heading {
   font-family: "IBM Plex Mono", monospace;
   font-weight: 700;

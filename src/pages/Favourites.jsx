@@ -15,7 +15,11 @@ export default function Favourites() {
 
   return (
     <div>
-      <PostsList posts={favourites} />
+      {favourites.length ? (
+        <PostsList posts={favourites} />
+      ) : (
+        <p className="text-center">You have no favourite posts!</p>
+      )}
     </div>
   );
 }
